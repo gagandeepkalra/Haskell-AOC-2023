@@ -26,6 +26,7 @@ source-repository head
 library
   exposed-modules:
       Day01
+      Day02
       Lib
   other-modules:
       Paths_Haskell_AOC_y2023
@@ -37,6 +38,8 @@ library
   build-depends:
       base >=4.7 && <5
     , containers
+    , parsec
+    , split
   default-language: Haskell2010
 
 executable Haskell-AOC-y2023-exe
@@ -52,6 +55,8 @@ executable Haskell-AOC-y2023-exe
       Haskell-AOC-y2023
     , base >=4.7 && <5
     , containers
+    , parsec
+    , split
   default-language: Haskell2010
 
 test-suite Haskell-AOC-y2023-test
@@ -68,4 +73,6 @@ test-suite Haskell-AOC-y2023-test
       Haskell-AOC-y2023
     , base >=4.7 && <5
     , containers
+    , parsec
+    , split
   default-language: Haskell2010
