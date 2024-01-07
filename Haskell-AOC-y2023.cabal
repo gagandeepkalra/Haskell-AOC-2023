@@ -27,6 +27,7 @@ library
   exposed-modules:
       Day01
       Day02
+      Day03
       Lib
   other-modules:
       Paths_Haskell_AOC_y2023
@@ -36,7 +37,8 @@ library
       src
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
-      base >=4.7 && <5
+      array
+    , base >=4.7 && <5
     , containers
     , parsec
     , split
@@ -53,6 +55,7 @@ executable Haskell-AOC-y2023-exe
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       Haskell-AOC-y2023
+    , array
     , base >=4.7 && <5
     , containers
     , parsec
@@ -71,6 +74,7 @@ test-suite Haskell-AOC-y2023-test
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       Haskell-AOC-y2023
+    , array
     , base >=4.7 && <5
     , containers
     , parsec

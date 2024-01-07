@@ -44,5 +44,5 @@ part2 :: [Game] -> Int
 part2 = sum . fmap (\(Game _ (Draw r g b)) -> r * g * b)
 
 solve :: String -> IO ()
-solve input = putStrLn "--- Day 01 ---" >> print (part1 $ p input) >> print (part2 $ p input)
+solve input = putStrLn "--- Day 02 ---" >> print (part1 $ p input) >> print (part2 $ p input)
   where p = parseGames
