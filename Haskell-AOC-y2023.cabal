@@ -29,6 +29,7 @@ library
       Day02
       Day03
       Day04
+      Day05
       Lib
   other-modules:
       Paths_Haskell_AOC_y2023
