@@ -1,4 +1,4 @@
-module Day02 (solve) where
+module AOC.Y_2023.Day02 (solve) where
 
 -- https://adventofcode.com/2023/day/1
 

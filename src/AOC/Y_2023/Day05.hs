@@ -1,7 +1,7 @@
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE RecordWildCards #-}
 
-module Day05 (solve, parseFertilizer) where
+module AOC.Y_2023.Day05 (solve, parseFertilizer) where
 
 import qualified Data.List as L
 import Text.Parsec

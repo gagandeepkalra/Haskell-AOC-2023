@@ -1,14 +1,14 @@
 cabal-version: 2.2
 
--- This file has been generated from package.yaml by hpack version 0.36.0.
+-- This file has been generated from package.yaml by hpack version 0.37.0.
 --
 -- see: https://github.com/sol/hpack
 
-name:           Haskell-AOC-y2023
+name:           Haskell-World
 version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/gagandeepkalra/Haskell-AOC-y2023#readme>
-homepage:       https://github.com/gagandeepkalra/Haskell-AOC-y2023#readme
-bug-reports:    https://github.com/gagandeepkalra/Haskell-AOC-y2023/issues
+description:    Please see the README on GitHub
+homepage:       https://github.com/gagandeepkalra/Haskell-World#readme
+bug-reports:    https://github.com/gagandeepkalra/Haskell-World/issues
 author:         gagandeep kalra
 maintainer:     gagandeepkalra1994@gmail.com
 copyright:      2023 gagandeep kalra
@@ -21,21 +21,21 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/gagandeepkalra/Haskell-AOC-y2023
+  location: https://github.com/gagandeepkalra/Haskell-World
 
 library
   exposed-modules:
-      Day01
-      Day02
-      Day03
-      Day04
-      Day05
-      Day06
+      AOC.Y_2023.Day01
+      AOC.Y_2023.Day02
+      AOC.Y_2023.Day03
+      AOC.Y_2023.Day04
+      AOC.Y_2023.Day05
+      AOC.Y_2023.Day06
       Lib
   other-modules:
-      Paths_Haskell_AOC_y2023
+      Paths_Haskell_World
   autogen-modules:
-      Paths_Haskell_AOC_y2023
+      Paths_Haskell_World
   hs-source-dirs:
       src
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
@@ -47,17 +47,17 @@ library
     , split
   default-language: Haskell2010
 
-executable Haskell-AOC-y2023-exe
+executable Haskell-World-exe
   main-is: Main.hs
   other-modules:
-      Paths_Haskell_AOC_y2023
+      Paths_Haskell_World
   autogen-modules:
-      Paths_Haskell_AOC_y2023
+      Paths_Haskell_World
   hs-source-dirs:
       app
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      Haskell-AOC-y2023
+      Haskell-World
     , array
     , base >=4.7 && <5
     , containers
@@ -65,18 +65,18 @@ executable Haskell-AOC-y2023-exe
     , split
   default-language: Haskell2010
 
-test-suite Haskell-AOC-y2023-test
+test-suite Haskell-World-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
-      Paths_Haskell_AOC_y2023
+      Paths_Haskell_World
   autogen-modules:
-      Paths_Haskell_AOC_y2023
+      Paths_Haskell_World
   hs-source-dirs:
       test
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      Haskell-AOC-y2023
+      Haskell-World
     , array
     , base >=4.7 && <5
     , containers

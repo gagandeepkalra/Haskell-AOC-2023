@@ -1,4 +1,4 @@
-module Day06 (solve, parseStats) where
+module AOC.Y_2023.Day06 (solve, parseStats) where
 
 import Data.Ix (range)
 import Data.List.NonEmpty (fromList)

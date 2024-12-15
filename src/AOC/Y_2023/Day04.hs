@@ -2,7 +2,7 @@
 {-# LANGUAGE RecordWildCards #-}
 {-# LANGUAGE TupleSections #-}
 
-module Day04 (solve, parseCards) where
+module AOC.Y_2023.Day04 (solve, parseCards) where
 
 import Control.Arrow (second)
 import qualified Data.List as L

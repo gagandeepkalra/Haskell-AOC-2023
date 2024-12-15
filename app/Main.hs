@@ -1,35 +1,33 @@
 module Main (main) where
 
 import qualified Data.Map as Map
-import qualified Day01 (solve)
-import qualified Day02 (solve)
-import qualified Day03 (solve)
-import qualified Day04 (solve)
-import qualified Day05 (solve)
-import qualified Day06 (solve)
-import System.Environment
+import qualified AOC.Y_2023.Day01 as Y_2023_Day01
+import qualified AOC.Y_2023.Day02 as Y_2023_Day02
+import qualified AOC.Y_2023.Day03 as Y_2023_Day03
+import qualified AOC.Y_2023.Day04 as Y_2023_Day04
+import qualified AOC.Y_2023.Day05 as Y_2023_Day05
+import qualified AOC.Y_2023.Day06 as Y_2023_Day06
+import System.Environment ( getArgs )
 
-solutions :: Map.Map String (String -> IO ())
-solutions = Map.fromList
-  [ ("01", Day01.solve)
-  , ("02", Day02.solve)
-  , ("03", Day03.solve)
-  , ("04", Day04.solve)
-  , ("05", Day05.solve)  
-  , ("06", Day06.solve)
+solutions2023 :: Map.Map String (String -> IO ())
+solutions2023 = Map.fromList
+  [ ("01", Y_2023_Day01.solve)
+  , ("02", Y_2023_Day02.solve)
+  , ("03", Y_2023_Day03.solve)
+  , ("04", Y_2023_Day04.solve)
+  , ("05", Y_2023_Day05.solve)  
+  , ("06", Y_2023_Day06.solve)
   ]
 
-solveSingle :: String -> IO ()
-solveSingle s = case Map.lookup s solutions of
-  Just f -> readFile (concat ["./data/day", s, ".txt"]) >>= f
+solveSingle :: String -> String -> IO ()
+solveSingle "2023" s = case Map.lookup s solutions2023 of
+  Just f -> readFile (concat ["./data/2023/day", s, ".txt"]) >>= f
   Nothing -> putStrLn $ "Day not implemented: " ++ s
-
-solveProblems :: [String] -> IO ()
-solveProblems = mapM_ solveSingle
+solveSingle _ _ = error ""
 
 main :: IO ()
 main = do
   args <- getArgs
-  if null args
-    then solveProblems $ Map.keys solutions
-    else solveProblems args
+  case args of
+    [y, problem] -> solveSingle y problem
+    _ -> error "invalid args"

@@ -1,6 +1,6 @@
 {-# LANGUAGE LambdaCase, BangPatterns #-}
 
-module Day03 (solve) where
+module AOC.Y_2023.Day03 (solve) where
 
 import Data.Array
 import Data.Char (isDigit)
