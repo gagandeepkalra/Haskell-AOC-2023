@@ -7,6 +7,7 @@ import qualified AOC.Y_2023.Day03 as Y_2023_Day03
 import qualified AOC.Y_2023.Day04 as Y_2023_Day04
 import qualified AOC.Y_2023.Day05 as Y_2023_Day05
 import qualified AOC.Y_2023.Day06 as Y_2023_Day06
+import qualified AOC.Y_2024.Day01 as Y_2024_Day01
 import System.Environment ( getArgs )
 
 solutions2023 :: Map.Map String (String -> IO ())
@@ -19,11 +20,20 @@ solutions2023 = Map.fromList
   , ("06", Y_2023_Day06.solve)
   ]
 
+solutions2024 :: Map.Map String (String -> IO ())
+solutions2024 = Map.fromList
+  [ ("01", Y_2024_Day01.solve)
+  ]
+
+solutions :: String -> Map.Map String (String -> IO ())
+solutions "2023" = solutions2023
+solutions "2024" = solutions2024 
+solutions _ = error "invalid year!"
+
 solveSingle :: String -> String -> IO ()
-solveSingle "2023" s = case Map.lookup s solutions2023 of
-  Just f -> readFile (concat ["./data/2023/day", s, ".txt"]) >>= f
+solveSingle year s = case Map.lookup s (solutions year) of
+  Just f -> readFile (concat ["./Data/Y_", year, "/day", s, ".txt"]) >>= f
   Nothing -> putStrLn $ "Day not implemented: " ++ s
-solveSingle _ _ = error ""
 
 main :: IO ()
 main = do
