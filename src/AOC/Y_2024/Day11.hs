@@ -1,6 +1,3 @@
-{-# OPTIONS_GHC -Wno-unused-top-binds #-}
-{-# LANGUAGE RankNTypes #-}
-{-# LANGUAGE FlexibleContexts #-}
 module AOC.Y_2024.Day11 (solve) where
 
 -- https://adventofcode.com/2024/day/11
@@ -41,14 +38,13 @@ rule n
     (a, b) = splitAt (l `div` 2) s
 
 applyN :: Int -> (a -> a) -> a -> a
-applyN 0 _ x = x
-applyN n f x = applyN (n - 1) f (f x)
+applyN n f = snd . until ((== 0) . fst) (\(i, x) -> (i - 1, f x)) . (,) n
 
 part :: Int -> Problem -> Int
 part n = getSum . foldMap' (Sum . snd) . applyN n f . (`zip` [1, 1..])
   where
-    f = Map.toList 
-      . Map.fromListWith (+) 
+    f = Map.toList
+      . Map.fromListWith (+)
       . (>>= \(x, c) -> rule x `zip` [c, c])
 
 solve :: String -> IO ()
