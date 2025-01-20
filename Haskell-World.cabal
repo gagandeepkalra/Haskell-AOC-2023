@@ -42,6 +42,7 @@ library
       AOC.Y_2024.Day09
       AOC.Y_2024.Day10
       AOC.Y_2024.Day11
+      AOC.Y_2024.Day12
       Lib
   other-modules:
       Paths_Haskell_World
