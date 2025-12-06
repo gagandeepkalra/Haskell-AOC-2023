@@ -21,6 +21,8 @@ import qualified AOC.Y_2024.Day11 as Y_2024_Day11
 import qualified AOC.Y_2024.Day12 as Y_2024_Day12
 import qualified AOC.Y_2024.Day13 as Y_2024_Day13
 import qualified AOC.Y_2024.Day14 as Y_2024_Day14
+import qualified AOC.Y_2024.Day15 as Y_2024_Day15
+import qualified AOC.Y_2025.Day01 as Y_2025_Day01
 import System.Environment ( getArgs )
 
 solutions2023 :: Map.Map String (String -> IO ())
@@ -49,11 +51,18 @@ solutions2024 = Map.fromList
   , ("12", Y_2024_Day12.solve)
   , ("13", Y_2024_Day13.solve)
   , ("14", Y_2024_Day14.solve)
+  , ("15", Y_2024_Day15.solve)
+  ]
+
+solutions2025 :: Map.Map String (String -> IO ())
+solutions2025 = Map.fromList
+  [ ("01", Y_2025_Day01.solve)
   ]
 
 solutions :: String -> Map.Map String (String -> IO ())
 solutions "2023" = solutions2023
 solutions "2024" = solutions2024 
+solutions "2025" = solutions2025
 solutions _ = error "invalid year!"
 
 solveSingle :: String -> String -> IO ()
