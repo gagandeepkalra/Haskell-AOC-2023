@@ -42,5 +42,5 @@ part2 :: [Range] -> Integer
 part2 ranges = sum  [fromIntegral x | Range start end <- ranges, x <- [start..end], isInvalid2 x]
 
 solve :: String -> IO ()
-solve input = putStrLn "--- Day 01 ---" >> print (part1 $ p input) >> print (part2 $ p input)
+solve input = putStrLn "--- Day 02 ---" >> print (part1 $ p input) >> print (part2 $ p input)
   where p = parseRows
