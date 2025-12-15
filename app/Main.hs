@@ -26,6 +26,7 @@ import qualified AOC.Y_2025.Day01 as Y_2025_Day01
 import qualified AOC.Y_2025.Day02 as Y_2025_Day02
 import qualified AOC.Y_2025.Day03 as Y_2025_Day03
 import qualified AOC.Y_2025.Day04 as Y_2025_Day04
+import qualified AOC.Y_2025.Day05 as Y_2025_Day05
 import System.Environment ( getArgs )
 
 solutions2023 :: Map.Map String (String -> IO ())
@@ -63,6 +64,7 @@ solutions2025 = Map.fromList
   , ("02", Y_2025_Day02.solve)
   , ("03", Y_2025_Day03.solve)
   , ("04", Y_2025_Day04.solve)
+  , ("05", Y_2025_Day05.solve)
   ]
 
 solutions :: String -> Map.Map String (String -> IO ())
