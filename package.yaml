@@ -23,8 +23,9 @@ dependencies:
 - base >= 4.7 && < 5
 - array
 - containers
+- parallel
 - parsec
-- split
+- time
 
 ghc-options:
 - -Wall
@@ -45,9 +46,15 @@ executables:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
+    # These GHC options improve performance and runtime flexibility for the executable:
+    # -threaded: Enable multi-threaded runtime, allowing the program to utilize multiple CPU cores.
+    # -rtsopts: Allow passing options to the runtime system (RTS) at program startup.
+    # -with-rtsopts=-N: By default, use all available processor cores (sets +RTS -N at runtime).
+    # -O2: Optimize the executable for performance. 
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
+    - -O2
     dependencies:
     - Haskell-World
 

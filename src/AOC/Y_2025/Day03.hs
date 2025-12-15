@@ -1,14 +1,18 @@
+{-# LANGUAGE BangPatterns #-}
 module AOC.Y_2025.Day03 (solve) where
 
 -- https://adventofcode.com/2025/day/3
 
-import Text.Parsec ( digit, many1, sepBy, parse, newline )
+import Control.Arrow (Arrow(first))
+import Control.Parallel.Strategies (parList, using, rdeepseq)
 import Data.Char (digitToInt)
 import Data.Foldable (Foldable(foldMap'))
-import Data.Monoid ( Sum(Sum, getSum) )
-import Data.Map.Strict as Map ( Map, empty, lookup, insert )
-import Control.Arrow (Arrow(first))
-import Data.Maybe ( fromMaybe )
+import Data.Map.Strict as Map (Map, empty, insert, lookup)
+import Data.Maybe (fromMaybe)
+import Data.Monoid (Sum (Sum, getSum))
+import Data.Time as Time (diffUTCTime, getCurrentTime)
+import Text.Parsec (digit, many1, newline, parse, sepBy)
+
 
 type Digit = Int
 
@@ -28,6 +32,11 @@ part1 = getSum . foldMap' (Sum . fromMaybe 0 . flip calculate 2)
 part2 :: [Joltage] -> Integer
 part2 = getSum . foldMap' (Sum . fromMaybe 0 . flip calculate 12)
 
+part2Parallel :: [Joltage] -> Integer
+part2Parallel js = sum $ using (fromMaybe 0 . flip calculate 12 <$> js) strat
+  where
+    strat = parList rdeepseq -- need Normal Form, NF instead of WHNF
+
 type IJoltage = [(Int, Int)] -- (digit, index)
 type Cache = Map (Int, Int) (Maybe Integer)
 
@@ -45,14 +54,29 @@ calculate joltage limit = fst $ go (joltage `zip` [1..]) limit Map.empty
       | Just v <- Map.lookup (i, n) cache = (v, cache)  -- cache hit
       | otherwise =
         let
-            -- Option 1: include this digit
             (withX, cache')    = first (fmap (fromIntegral x * (10 ^ (n-1)) + )) $ go xs (n - 1) cache
-            -- Option 2: skip this digit
             (withoutX, cache'') = go xs n cache'
             result = (max <$> withX <*> withoutX) `orElse` withX `orElse` withoutX
             cacheFinal = Map.insert (i, n) result cache''
         in (result, cacheFinal)
 
 solve :: String -> IO ()
-solve input = putStrLn "--- Day 03 ---" >> print (part1 $ p input) >> print (part2 $ p input)
-  where p = parseRows
+solve input = do
+    putStrLn "--- Day 03 ---"
+    print (part1 $ p input)
+    putStrLn "Timing part2..."
+    start <- getCurrentTime
+    let !result = part2 $ p input
+    end <- getCurrentTime
+    print result
+    putStrLn $ "Time for part2: " ++ show (diffUTCTime end start)
+
+    putStrLn "Timing part2Parallel..."
+    start' <- getCurrentTime
+    let !result' = part2Parallel $ p input
+    end' <- getCurrentTime
+    print result'
+    putStrLn $ "Time for part2Parallel: " ++ show (diffUTCTime end' start')
+  where
+    p = parseRows
+    

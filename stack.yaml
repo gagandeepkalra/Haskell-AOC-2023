@@ -74,5 +74,8 @@ packages:
 #
 # Allow a newer minor version of GHC than the snapshot specifies
 # compiler-check: newer-minor
+
+# This section adds the GHC option "-haddock" for every component in the project.
+# It ensures that when building with Stack, Haddock documentation is always generated.
 ghc-options:
   '$everything': -haddock
