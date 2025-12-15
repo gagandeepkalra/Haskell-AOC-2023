@@ -3,6 +3,7 @@ module AOC.Y_2025.Day03 (solve) where
 
 -- https://adventofcode.com/2025/day/3
 
+import Control.Applicative (Alternative((<|>)))
 import Control.Arrow (Arrow(first))
 import Control.Parallel.Strategies (parList, using, rdeepseq)
 import Data.Char (digitToInt)
@@ -13,9 +14,7 @@ import Data.Monoid (Sum (Sum, getSum))
 import Data.Time as Time (diffUTCTime, getCurrentTime)
 import Text.Parsec (digit, many1, newline, parse, sepBy)
 
-
 type Digit = Int
-
 type Joltage = [Digit]
 
 parseRows :: String -> [Joltage]
@@ -40,10 +39,6 @@ part2Parallel js = sum $ using (fromMaybe 0 . flip calculate 12 <$> js) strat
 type IJoltage = [(Int, Int)] -- (digit, index)
 type Cache = Map (Int, Int) (Maybe Integer)
 
-orElse :: Maybe a -> Maybe a -> Maybe a
-orElse (Just x) _ = Just x
-orElse Nothing y  = y
-
 calculate :: Joltage -> Int -> Maybe Integer
 calculate joltage limit = fst $ go (joltage `zip` [1..]) limit Map.empty
   where
@@ -53,30 +48,29 @@ calculate joltage limit = fst $ go (joltage `zip` [1..]) limit Map.empty
     go ((x, i) : xs) n cache
       | Just v <- Map.lookup (i, n) cache = (v, cache)  -- cache hit
       | otherwise =
-        let
-            (withX, cache')    = first (fmap (fromIntegral x * (10 ^ (n-1)) + )) $ go xs (n - 1) cache
+        let (withX, cache')    = first (fmap (fromIntegral x * (10 ^ (n-1)) + )) $ go xs (n - 1) cache
             (withoutX, cache'') = go xs n cache'
-            result = (max <$> withX <*> withoutX) `orElse` withX `orElse` withoutX
+            result = (max <$> withX <*> withoutX) <|> withX <|> withoutX
             cacheFinal = Map.insert (i, n) result cache''
         in (result, cacheFinal)
 
 solve :: String -> IO ()
 solve input = do
     putStrLn "--- Day 03 ---"
-    print (part1 $ p input)
+    print $ part1 p
     putStrLn "Timing part2..."
     start <- getCurrentTime
-    let !result = part2 $ p input
+    let !result = part2 p
     end <- getCurrentTime
     print result
     putStrLn $ "Time for part2: " ++ show (diffUTCTime end start)
 
     putStrLn "Timing part2Parallel..."
     start' <- getCurrentTime
-    let !result' = part2Parallel $ p input
+    let !result' = part2Parallel p
     end' <- getCurrentTime
     print result'
     putStrLn $ "Time for part2Parallel: " ++ show (diffUTCTime end' start')
   where
-    p = parseRows
+    p = parseRows input
     
