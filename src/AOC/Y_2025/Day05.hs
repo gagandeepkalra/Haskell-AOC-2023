@@ -1,4 +1,3 @@
-{-# LANGUAGE FlexibleContexts #-}
 module AOC.Y_2025.Day05 (solve) where
 
 -- https://adventofcode.com/2025/day/5
@@ -41,9 +40,9 @@ part2 (ranges, _) = sum [b - a + 1 | (a, b) <- disjointed]
       | otherwise = b : acc
     
     merged :: (Ord a, Num a) => (a, a) -> (a, a) -> Maybe (a, a)
-    merged f@(a1, b1) (a2, b2) 
+    merged first@(a1, b1) (a2, b2) 
       | a1 <= a2, a2 <= b1 + 1, b1 <= b2 = Just (a1, b2)   -- overlapping or adjacent
-      | a1 <= a2, b2 <= b1 = Just f                        -- contained
+      | a1 <= a2, b2 <= b1 = Just first                        -- contained
       | otherwise = Nothing
 
 solve :: String -> IO ()
