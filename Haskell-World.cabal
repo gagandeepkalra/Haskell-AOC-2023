@@ -52,6 +52,8 @@ library
       AOC.Y_2025.Day04
       AOC.Y_2025.Day05
       AOC.Y_2025.Day06
+      AOC.Y_2025.Day07
+      AOC.Y_2025.Day08
       Lib
   other-modules:
       Paths_Haskell_World
@@ -64,6 +66,7 @@ library
       array
     , base >=4.7 && <5
     , containers
+    , extra
     , parallel
     , parsec
     , time
@@ -83,6 +86,7 @@ executable Haskell-World-exe
     , array
     , base >=4.7 && <5
     , containers
+    , extra
     , parallel
     , parsec
     , time
@@ -103,6 +107,7 @@ test-suite Haskell-World-test
     , array
     , base >=4.7 && <5
     , containers
+    , extra
     , parallel
     , parsec
     , time
