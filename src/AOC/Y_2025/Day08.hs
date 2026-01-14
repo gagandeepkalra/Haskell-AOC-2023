@@ -11,6 +11,8 @@ import Data.Ord (Down (Down), comparing)
 import Data.Set as Set (Set, empty, insert, member, size, union)
 import Text.Parsec (char, digit, many1, newline, parse, sepEndBy)
 
+-- TODO: UNION FIND ALGORITHM
+
 -- Adjacency list representation of an acyclic graph
 type Graph a = Map.Map a [a]
 
